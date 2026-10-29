@@ -1,0 +1,3 @@
+team = "{team}"
+members = []          # your GitHub names
+command = ["python", "run.py"]
