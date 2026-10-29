@@ -15,7 +15,10 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
-    container: ghcr.io/mcencini/mritogetherthon:latest
+    # As root: the image's own user cannot write the runner's files.
+    container:
+      image: ghcr.io/mcencini/mritogetherthon:latest
+      options: --user root
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
