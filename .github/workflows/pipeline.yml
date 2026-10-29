@@ -36,7 +36,7 @@ jobs:
           fi
           python -m pipeline scope --base "$BASE" $([ "$FORK" = true ] && echo --fork) > touched.txt
           echo "Implementations to check:"; cat touched.txt
-          echo "implementations=$(tr '\n' ' ' < touched.txt)" >> "$GITHUB_OUTPUT"
+          echo "implementations=$(xargs < touched.txt)" >> "$GITHUB_OUTPUT"
       - name: Check them
         if: steps.scope.outputs.implementations != ''
         run: python -m pipeline check ${{ steps.scope.outputs.implementations }}
